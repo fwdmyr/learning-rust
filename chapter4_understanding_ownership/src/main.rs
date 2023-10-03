@@ -21,7 +21,7 @@ fn main() {
     let s1 = String::from("hello");
     // Performs a move and invalidates s1. Using s1 after this point results in a compiler error.
     let s2 = s1;
-    // Deep copies can be created via cloning.
+    // Deep copies can be created via cloning and do not invalidate the rhs.
     let s3 = s2.clone();
 
     // Moves s3 into the string parameter of the function and invalidates s3.
@@ -86,7 +86,7 @@ fn main() {
     // println!("{}", word);
 }
 
-// Returns a String slice ,i.e. a str type. An improved API would also take a String slice as a
+// Returns a String slice ,i.e. a str type. An improved API would take a String slice as a
 // parameter allowing callers to pass Strings and String literals as arguments.
 fn first_word(s: &String) -> &str {
     let bytes = s.as_bytes();

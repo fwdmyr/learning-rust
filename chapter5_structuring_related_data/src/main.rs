@@ -60,7 +60,7 @@ fn main() {
     // Field init shorthand syntax. See function.
     let default_user = build_user(String::from("Default"), String::from("Default"));
 
-    // Small example:
+    // Small struct usage example:
 
     let rectangle = Rectangle {
         width: 100,
