@@ -4,6 +4,8 @@
 use std::cmp::PartialOrd;
 fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
+    // Destructuring by pattern matching. Usually, we loop over &T. But by specifying &element,
+    // element is actually deduced to be T only. Think of template parameter type deduction.
     for &element in list.iter() {
         if element > largest {
             largest = element;

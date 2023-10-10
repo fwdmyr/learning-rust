@@ -53,24 +53,18 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 // The search result is borrowed from the contents string slice. We therefore need to connect their
 // lifetimes or the borrow checker will complain.
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut res = Vec::new();
-    for line in contents.lines() {
-        if line.contains(query) {
-            res.push(line);
-        }
-    }
-    res
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 pub fn ci_search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     let query = query.to_lowercase();
-    let mut res = Vec::new();
-    for line in contents.lines() {
-        if line.to_lowercase().contains(&query) {
-            res.push(line);
-        }
-    }
-    res
+    contents
+        .lines()
+        .filter(|line| line.to_lowercase().contains(query.as_str()))
+        .collect()
 }
 
 #[cfg(test)]
